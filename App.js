@@ -10,6 +10,11 @@ app.get("/", (req, res) => {
 
 app.use("/movies", router);
 
+// Middleware per rotte non esistenti
+app.use((req, res, next) => {
+  res.status(404).send("Rotta non trovata");
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
