@@ -4,8 +4,13 @@
   "description": "esercizio di oggi: **Setup Web App Express**\r repo: webapp-express",
   "main": "App.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --env-file=.env app.js",
+    "dev": "node --env-file=.env --watch app.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0"
+  }
 }
