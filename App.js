@@ -1,9 +1,11 @@
 // Preso da doc expressjs
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 4000;
 const router = require("./routes/movieRoutes");
 
+//aggiungi il cors e mettigli la porta di react
 app.use(express.static("public"));
 app.use(express.json());
 
