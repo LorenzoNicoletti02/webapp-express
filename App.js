@@ -1,9 +1,16 @@
 // Preso da doc expressjs
 const express = require("express");
-const cors = require("cors");
 const app = express();
 const port = 3000;
 const router = require("./routes/movieRoutes");
+const cors = require("cors");
+require("dotenv").config();
+// Rendo disponibile chiamata a server tramite cors
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+  })
+);
 
 //aggiungi il cors e mettigli la porta di react
 app.use(express.static("public"));

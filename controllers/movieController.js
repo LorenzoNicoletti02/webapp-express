@@ -1,46 +1,39 @@
-// Importo il file della connessione al database
+//importo il file della connessione al database chiamandolo connection
 const connection = require("../db");
 
-// Definiamo le callback per gli endpoint. Codice che viene  eseguito ad un URL specifico
-function index(req, res) {
-  const sql = "SELECT * FROM movies";
-
+//definiamo le funzioni callback per gli endpoint(codice effettivo che viene eseguito in un URL specifico).
+function Index(req, res) {
+  const sql = `SELECT * FROM movies`;
   connection.query(sql, (err, movies) => {
     if (err) {
       return next(new Error(err.message));
     }
 
-    return res.status(200).json({
-      status: "success",
-      data: movies,
-    });
+    return res.status(200).json(movies);
   });
 }
 
+//ENDPOINT SHOW
 function show(req, res) {
   const urlSlug = req.params.slug;
-  const sql = `SELECT 
-        movies.*,
+  const sql = `SELECT
+    movies.*,
         IFNULL(AVG(reviews.vote), 0) AS average_vote
-      FROM 
-        movies
+    FROM
+    movies
       LEFT JOIN 
         reviews ON movies.id = reviews.movie_id
-      WHERE 
-        movies.slug = ?
-      GROUP BY 
-        movies.id;`;
-
+    WHERE
+    movies.slug = ?
+        GROUP BY
+    movies.id;`;
   connection.query(sql, [urlSlug], (err, movies) => {
     if (err) {
       return next(new Error(err.message));
     }
-
-    return res.status(200).json({
-      status: "success",
-      data: movies,
-    });
+    const obj = movies[0];
+    return res.status(200).json(obj);
   });
 }
 
-module.exports = { index, show };
+module.exports = { Index, show };
