@@ -6,5 +6,12 @@ const controller = require("../controllers/movieController");
 router.get("/", controller.Index);
 // aggiungo /:id perchè questo parametro viene salvato in una variabile chiamata id, per poi venire utilizzato nella chiamata al database
 router.get("/:slug", controller.show);
+
+// Endpoint salvo review di un libro
+// router.post("/:movieSlug/reviews", controller.reviewStore);
+
+// Endpoint mostro tutte le reviews
+router.get("/:movieSlug/reviews", controller.indexReviews);
+
 //esportiamo il router
 module.exports = router;
