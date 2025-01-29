@@ -8,7 +8,7 @@ router.get("/", controller.Index);
 router.get("/:slug", controller.show);
 
 // Endpoint salvo review di un libro
-// router.post("/:movieSlug/reviews", controller.reviewStore);
+router.post("/:movieSlug/reviews", controller.reviewStore);
 
 // Endpoint mostro tutte le reviews
 router.get("/:movieSlug/reviews", controller.indexReviews);
